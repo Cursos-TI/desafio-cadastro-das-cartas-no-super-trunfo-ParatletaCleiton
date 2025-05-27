@@ -4,72 +4,72 @@
 int main(){
 printf("desafio Cartas Super Trunfo!/n");
 }
+#define TAMANHO_CÓDIGO 4
+#define TAMANHO_CIDADE 50
 
-#define TAM_CODIGO 4
-#define TAM_CIDADE 50
-
-// Estrutura para representar uma carta do Super Trunfo
+// Estrutura para armazenar os dados de uma carta
 typedef struct {
     char estado;
-    char codigo[TAM_CODIGO + 1];
-    char nomeCidade[TAM_CIDADE + 1];
+    char codigo[TAMANHO_CÓDIGO + 1]; // +1 para o nulo
+    char cidade[TAMANHO_CIDADE + 1]; // +1 para o nulo
     int populacao;
     float area;
     float pib;
     int pontosTuristicos;
 } Carta;
 
+// Função para ler os dados de uma carta
+void lerDadosCarta(Carta *carta, int numeroCarta) {
+    printf("\nCarta %d:\n", numeroCarta);
 
-    Carta cartas[2];  // Array para armazenar as informações de duas cartas
-    int i;
+    printf("Estado: ");
+    scanf(" %c", &carta->estado);
 
-    // Solicita as informações para cada carta
-    for (i = 0; i < 2; i++) {
-        printf("Carta %d:\n", i + 1);
+    printf("Código: ");
+    scanf(" %s", carta->codigo);
 
-        // Estado
-        printf("Estado: ");
-        scanf(" %c", &cartas[i].estado);
+    printf("Nome da Cidade: ");
+    scanf(" %s", carta->cidade);
 
-        // Código
-        printf("Código da Carta: ");
-        scanf("%s", cartas[i].codigo);
+    printf("População: ");
+    scanf("%d", &carta->populacao);
 
-        // Nome da Cidade
-        printf("Nome da Cidade: ");
-        scanf(" %49[^\n]", cartas[i].nomeCidade);
+    printf("Área (em km²): ");
+    scanf("%f", &carta->area);
 
-        // População
-        printf("População: ");
-        scanf("%d", &cartas[i].populacao);
+    printf("PIB (em bilhões de reais): ");
+    scanf("%f", &carta->pib);
 
-        // Área
-        printf("Área (em km²): ");
-        scanf("%f", &cartas[i].area);
+    printf("Número de Pontos Turísticos: ");
+    scanf("%d", &carta->pontosTuristicos);
+}
 
-        // PIB
-        printf("PIB: ");
-        scanf("%f", &cartas[i].pib);
+// Função para exibir os dados de uma carta
+void exibirDadosCarta(Carta carta, int numeroCarta) {
+    printf("\nCarta %d:\n", numeroCarta);
+    printf("Estado: %c\n", carta.estado);
+    printf("Código: %s\n", carta.codigo);
+    printf("Nome da Cidade: %s\n", carta.cidade);
+    printf("População: %d\n", carta.populacao);
+    printf("Área: %.2f km²\n", carta.area);
+    printf("PIB: %.2f bilhões de reais\n", carta.pib);
+    printf("Número de Pontos Turísticos: %d\n", carta.pontosTuristicos);
+}
 
-        // Número de Pontos Turísticos
-        printf("Número de Pontos Turísticos: ");
-        scanf("%d", &cartas[i].pontosTuristicos);
+int main() {
+    Carta carta1, carta2;
 
-        printf("\n"); // Linha em branco para separar as cartas
-    }
+    // Ler os dados da primeira carta
+    lerDadosCarta(&carta1, 1);
 
-    // Exibe as informações das cartas
-    for (i = 0; i < 2; i++) {
-        printf("Carta %d:\n", i + 1);
-        printf("Estado: %c\n", cartas[i].estado);
-        printf("Código: %s\n", cartas[i].codigo);
-        printf("Nome da Cidade: %s\n", cartas[i].nomeCidade);
-        printf("População: %d\n", cartas[i].populacao);
-        printf("Área: %.2f km²\n", cartas[i].area);
-        printf("PIB: %.2f bilhões de reais\n", cartas[i].pib);
-        printf("Número de Pontos Turísticos: %d\n", cartas[i].pontosTuristicos);
-        printf("\n"); // Linha em branco para separar as cartas
-    }
+    // Ler os dados da segunda carta
+    lerDadosCarta(&carta2, 2);
+
+    // Exibir os dados da primeira carta
+    exibirDadosCarta(carta1, 1);
+
+    // Exibir os dados da segunda carta
+    exibirDadosCarta(carta2, 2);
 
     return 0;
 }
